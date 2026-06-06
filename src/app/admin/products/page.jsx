@@ -15,7 +15,6 @@ import { getCategories } from "@/services/categories/getCategories";
 import { uploadImage } from "@/utils/uploadImage";
 import { deleteImages } from "@/utils/deleteImage";
 
-
 // ─── empty form helper ─────────────────────────────────────────────────────────
 const emptyForm = {
 	name: "",
@@ -73,7 +72,7 @@ const ProductsPage = () => {
 				categoryId: selectedCategory?.value,
 				categoryName: selectedCategory?.label,
 			},
-			images
+			images,
 		);
 
 		setForm(emptyForm);
@@ -96,7 +95,7 @@ const ProductsPage = () => {
 		setEditCategory(
 			product.categoryId
 				? { value: product.categoryId, label: product.categoryName }
-				: null
+				: null,
 		);
 		setExistingImages(product.images ?? []);
 		setNewImages([]);
@@ -121,7 +120,7 @@ const ProductsPage = () => {
 		try {
 			// figure out which images were removed
 			const removedUrls = (editingProduct.images ?? []).filter(
-				(url) => !existingImages.includes(url)
+				(url) => !existingImages.includes(url),
 			);
 
 			// delete removed images from storage
@@ -161,7 +160,7 @@ const ProductsPage = () => {
 	// ── DELETE product ───────────────────────────────────────────────────────────
 	const handleDelete = async (product) => {
 		const confirmed = window.confirm(
-			`"${product.name}" ko delete karna chahte hain? Yeh action undo nahi ho sakta.`
+			`"${product.name}" ko delete karna chahte hain? Yeh action undo nahi ho sakta.`,
 		);
 		if (!confirmed) return;
 
@@ -185,14 +184,12 @@ const ProductsPage = () => {
 	// ─────────────────────────────────────────────────────────────────────────────
 	return (
 		<div className="p-6 max-w-5xl mx-auto">
-
 			<h1 className="text-3xl font-bold mb-6">Products</h1>
 
 			{/* ── ADD FORM ──────────────────────────────────────────────────────── */}
 			<form
 				onSubmit={handleSubmit}
-				className="grid gap-4 bg-white p-6 rounded-xl shadow"
-			>
+				className="grid gap-4 bg-white p-6 rounded-xl shadow">
 				<input
 					placeholder="Product Name"
 					value={form.name}
@@ -204,7 +201,9 @@ const ProductsPage = () => {
 				<textarea
 					placeholder="Description"
 					value={form.description}
-					onChange={(e) => setForm({ ...form, description: e.target.value })}
+					onChange={(e) =>
+						setForm({ ...form, description: e.target.value })
+					}
 					className="border p-2 rounded"
 				/>
 
@@ -212,7 +211,9 @@ const ProductsPage = () => {
 					placeholder="Price"
 					type="number"
 					value={form.price}
-					onChange={(e) => setForm({ ...form, price: e.target.value })}
+					onChange={(e) =>
+						setForm({ ...form, price: e.target.value })
+					}
 					className="border p-2 rounded"
 					required
 				/>
@@ -221,7 +222,9 @@ const ProductsPage = () => {
 					placeholder="Stock"
 					type="number"
 					value={form.stock}
-					onChange={(e) => setForm({ ...form, stock: e.target.value })}
+					onChange={(e) =>
+						setForm({ ...form, stock: e.target.value })
+					}
 					className="border p-2 rounded"
 					required
 				/>
@@ -239,7 +242,9 @@ const ProductsPage = () => {
 					onChange={(e) => setImages([...e.target.files])}
 				/>
 
-				<button className="bg-black text-white py-2 rounded">
+				<button
+					className="bg-black text-white py-2 rounded hover:bg-gray-800 hover:text-gray-200 hover:shadow-lg hover:cursor-pointer transition"
+					type="submit">
 					Add Product
 				</button>
 			</form>
@@ -249,8 +254,7 @@ const ProductsPage = () => {
 				{products.map((p) => (
 					<div
 						key={p.id}
-						className="border p-4 rounded flex gap-4 items-start"
-					>
+						className="border p-4 rounded flex gap-4 items-start">
 						{/* thumbnail */}
 						{p.images?.[0] && (
 							<img
@@ -263,25 +267,27 @@ const ProductsPage = () => {
 						{/* info */}
 						<div className="flex-1">
 							<h2 className="font-bold">{p.name}</h2>
-							<p className="text-sm text-gray-500">{p.categoryName}</p>
+							<p className="text-sm text-gray-500">
+								{p.categoryName}
+							</p>
 							<p className="font-medium">Rs {p.price}</p>
-							<p className="text-xs text-gray-400">Stock: {p.stock}</p>
+							<p className="text-xs text-gray-400">
+								Stock: {p.stock}
+							</p>
 						</div>
 
 						{/* actions */}
 						<div className="flex flex-col gap-2 shrink-0">
 							<button
 								onClick={() => openEdit(p)}
-								className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-100"
-							>
+								className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-100">
 								Edit
 							</button>
 
 							<button
 								onClick={() => handleDelete(p)}
 								disabled={deletingId === p.id}
-								className="text-sm border border-red-300 text-red-600 px-3 py-1 rounded hover:bg-red-50 disabled:opacity-50"
-							>
+								className="text-sm border border-red-300 text-red-600 px-3 py-1 rounded hover:bg-red-50 disabled:opacity-50">
 								{deletingId === p.id ? "Deleting..." : "Delete"}
 							</button>
 						</div>
@@ -293,27 +299,29 @@ const ProductsPage = () => {
 			{editingProduct && (
 				<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
 					<div className="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-
 						{/* modal header */}
 						<div className="flex items-center justify-between p-6 border-b">
 							<h2 className="text-xl font-bold">Edit Product</h2>
 							<button
 								onClick={closeEdit}
 								className="text-gray-400 hover:text-gray-600 text-2xl leading-none"
-								aria-label="Close"
-							>
+								aria-label="Close">
 								&times;
 							</button>
 						</div>
 
 						{/* modal body */}
-						<form onSubmit={handleEditSave} className="grid gap-4 p-6">
-
+						<form
+							onSubmit={handleEditSave}
+							className="grid gap-4 p-6">
 							<input
 								placeholder="Product Name"
 								value={editForm.name}
 								onChange={(e) =>
-									setEditForm({ ...editForm, name: e.target.value })
+									setEditForm({
+										...editForm,
+										name: e.target.value,
+									})
 								}
 								className="border p-2 rounded"
 								required
@@ -323,7 +331,10 @@ const ProductsPage = () => {
 								placeholder="Description"
 								value={editForm.description}
 								onChange={(e) =>
-									setEditForm({ ...editForm, description: e.target.value })
+									setEditForm({
+										...editForm,
+										description: e.target.value,
+									})
 								}
 								className="border p-2 rounded"
 							/>
@@ -333,7 +344,10 @@ const ProductsPage = () => {
 								type="number"
 								value={editForm.price}
 								onChange={(e) =>
-									setEditForm({ ...editForm, price: e.target.value })
+									setEditForm({
+										...editForm,
+										price: e.target.value,
+									})
 								}
 								className="border p-2 rounded"
 								required
@@ -344,7 +358,10 @@ const ProductsPage = () => {
 								type="number"
 								value={editForm.stock}
 								onChange={(e) =>
-									setEditForm({ ...editForm, stock: e.target.value })
+									setEditForm({
+										...editForm,
+										stock: e.target.value,
+									})
 								}
 								className="border p-2 rounded"
 								required
@@ -373,10 +390,11 @@ const ProductsPage = () => {
 												/>
 												<button
 													type="button"
-													onClick={() => removeExistingImage(url)}
+													onClick={() =>
+														removeExistingImage(url)
+													}
 													className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs leading-none"
-													aria-label="Remove image"
-												>
+													aria-label="Remove image">
 													&times;
 												</button>
 											</div>
@@ -393,7 +411,9 @@ const ProductsPage = () => {
 								<input
 									type="file"
 									multiple
-									onChange={(e) => setNewImages([...e.target.files])}
+									onChange={(e) =>
+										setNewImages([...e.target.files])
+									}
 								/>
 							</div>
 
@@ -402,25 +422,21 @@ const ProductsPage = () => {
 								<button
 									type="button"
 									onClick={closeEdit}
-									className="flex-1 border border-gray-300 py-2 rounded hover:bg-gray-100"
-								>
+									className="flex-1 border border-gray-300 py-2 rounded hover:bg-gray-100">
 									Cancel
 								</button>
 
 								<button
 									type="submit"
 									disabled={editLoading}
-									className="flex-1 bg-black text-white py-2 rounded disabled:opacity-50"
-								>
+									className="flex-1 bg-black text-white py-2 rounded disabled:opacity-50">
 									{editLoading ? "Saving..." : "Save Changes"}
 								</button>
 							</div>
-
 						</form>
 					</div>
 				</div>
 			)}
-
 		</div>
 	);
 };
