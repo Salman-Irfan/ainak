@@ -3,11 +3,23 @@
 "use client";
 
 import { useState } from "react";
+import { addToCart } from "@/services/cart/addToCart";
 
 const ProductDetails = ({ product }) => {
 	const [selectedImage, setSelectedImage] = useState(
 		product.images?.[0] || "",
 	);
+	// add to cart handler
+	const handleAddToCart = () => {
+		addToCart({
+			productId: product.id,
+			name: product.name,
+			price: product.price,
+			image: product.images?.[0] || "",
+		});
+
+		alert("Added to cart");
+	};
 
 	return (
 		<div className="max-w-7xl mx-auto px-6 py-10">
@@ -81,11 +93,13 @@ const ProductDetails = ({ product }) => {
 						</h3>
 
 						<div className="flex gap-4">
-							<button className=" flex-1 bg-black text-white py-4 rounded-xl font-medium hover:bg-slate-800 transition">
+							<button
+								onClick={handleAddToCart}
+								className=" flex-1 bg-black text-white py-4 rounded-xl font-medium hover:bg-slate-800 hover:cursor-pointer transition">
 								Add To Cart
 							</button>
 
-							<button className=" flex-1 border py-4 rounded-xl font-medium hover:bg-slate-100 transition">
+							<button className=" flex-1 border py-4 rounded-xl font-medium hover:bg-green-700 hover:cursor-pointer transition">
 								Buy Now
 							</button>
 						</div>
