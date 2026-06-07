@@ -7,6 +7,7 @@ import {
 	removeFromCart,
 	updateQuantity,
 } from "@/services/cart/cartStorage";
+import Link from "next/link";
 
 export default function CartPage() {
 	const [cart, setCart] = useState([]);
@@ -36,7 +37,7 @@ export default function CartPage() {
 
 	const total = cart.reduce(
 		(sum, item) => sum + item.price * item.quantity,
-		0
+		0,
 	);
 
 	return (
@@ -51,8 +52,7 @@ export default function CartPage() {
 						{cart.map((item) => (
 							<div
 								key={item.productId}
-								className="border rounded-xl p-4 flex items-center gap-4"
-							>
+								className="border rounded-xl p-4 flex items-center gap-4">
 								<img
 									src={item.image}
 									className="w-24 h-24 object-cover rounded"
@@ -69,8 +69,7 @@ export default function CartPage() {
 									<div className="flex items-center gap-3 mt-2">
 										<button
 											onClick={() => decreaseQty(item)}
-											className="px-3 py-1 bg-gray-200 rounded"
-										>
+											className="px-3 py-1 bg-gray-200 rounded">
 											-
 										</button>
 
@@ -80,8 +79,7 @@ export default function CartPage() {
 
 										<button
 											onClick={() => increaseQty(item)}
-											className="px-3 py-1 bg-gray-200 rounded"
-										>
+											className="px-3 py-1 bg-gray-200 rounded">
 											+
 										</button>
 									</div>
@@ -89,18 +87,24 @@ export default function CartPage() {
 
 								<button
 									onClick={() => handleRemove(item.productId)}
-									className="bg-red-500 text-white px-4 py-2 rounded"
-								>
+									className="bg-red-500 text-white px-4 py-2 rounded">
 									Remove
 								</button>
 							</div>
 						))}
 					</div>
 
-					<div className="mt-8 text-right">
+					<div className="mt-8 flex items-center justify-between">
 						<h2 className="text-2xl font-bold">
 							Total: Rs {total}
 						</h2>
+						<Link 
+							href={`/checkout`}
+							className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition"
+						>
+								Proceed to Checkout →
+
+						</Link>
 					</div>
 				</>
 			)}
