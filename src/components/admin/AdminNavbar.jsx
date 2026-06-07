@@ -87,7 +87,9 @@ const AdminNavbar = () => {
                         <Link href="/admin/orders">
                             Orders
                         </Link>
-
+                        <Link href="/admin/carousel">
+                            Carousel
+                        </Link>
                         <button
                             onClick={handleLogout}
                             className="px-4 py-2 rounded bg-red-600 hover:bg-red-700 transition"

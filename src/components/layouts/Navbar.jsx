@@ -2,26 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { getCartCount } from "@/services/cart/getCartCount";
 
 const Navbar = ({ categories = [] }) => {
-	const [cartCount, setCartCount] = useState(0);
-	
-	useEffect(() => {
-		const updateCount = () => {
-			setCartCount(getCartCount());
-		};
-
-		updateCount();
-
-		window.addEventListener("cartUpdated", updateCount);
-
-		return () => {
-			window.removeEventListener("cartUpdated", updateCount);
-		};
-	}, []);
-
 	return (
 		<header className="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-700">
 			<div className="max-w-7xl mx-auto px-6">
@@ -57,9 +39,9 @@ const Navbar = ({ categories = [] }) => {
 							Search
 						</button>
 
-						<Link href="/cart" className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
-							🛒 Cart ({cartCount})
-						</Link>
+						<button className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
+							Cart
+						</button>
 					</div>
 				</div>
 			</div>
