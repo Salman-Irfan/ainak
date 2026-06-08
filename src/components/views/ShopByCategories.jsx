@@ -9,25 +9,25 @@ const CATEGORIES = [
   {
     name: 'Eye Glasses',
     href: '/category/eye-glasses',
-    image: 'https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=600&q=80',
+    image: '/assets/images/eyeGlasses.jpg',
     badge: '150+ Styles',
   },
   {
     name: 'Sun Glasses',
     href: '/category/sun-glasses',
-    image: 'https://images.unsplash.com/photo-1625122905031-487271b2f6c7?w=600&q=80',
+    image: '/assets/images/sunGlasses.jpg',
     badge: 'UV-400',
   },
   {
     name: 'Contact Lenses',
     href: '/category/contact-lenses',
-    image: 'https://images.unsplash.com/photo-1608478584728-b2e17fc73ce0?w=600&q=80',
+    image: '/assets/images/contactLenses.jpg',
     badge: 'Daily & Monthly',
   },
   {
     name: 'Lenses',
     href: '/category/lenses',
-    image: 'https://images.unsplash.com/photo-1587840000563-6eb21ba34d39?w=600&q=80',
+    image: '/assets/images/lenses.jpg',
     badge: 'Prescription',
   },
 ];

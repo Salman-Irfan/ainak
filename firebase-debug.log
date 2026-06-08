@@ -1,0 +1,144 @@
+[debug] [2026-06-07T09:18:52.550Z] ----------------------------------------------------------------------
+[debug] [2026-06-07T09:18:52.552Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MGS Computer\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-06-07T09:18:52.553Z] CLI Version:   15.19.1
+[debug] [2026-06-07T09:18:52.553Z] Platform:      win32
+[debug] [2026-06-07T09:18:52.553Z] Node Version:  v22.14.0
+[debug] [2026-06-07T09:18:52.553Z] Time:          Sun Jun 07 2026 14:18:52 GMT+0500 (Pakistan Standard Time)
+[debug] [2026-06-07T09:18:52.553Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  F:\projects\ainak
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-06-07T09:19:03.434Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-07T09:19:03.434Z] > authorizing via signed-in user (salmanirfan674@gmail.com)
+[debug] [2026-06-07T09:19:03.436Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:03.437Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:03.439Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/ainak-51ef5 [none]
+[debug] [2026-06-07T09:19:04.113Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/ainak-51ef5 200
+[debug] [2026-06-07T09:19:04.113Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/ainak-51ef5 {"projectId":"ainak-51ef5","projectNumber":"933805831721","displayName":"ainak","name":"projects/ainak-51ef5","resources":{"hostingSite":"ainak-51ef5"},"state":"ACTIVE","etag":"1_9461ada4-6d9d-4b7e-a8b7-9badd877665a"}
+[info] i  Using project ainak-51ef5 (ainak) . 
+[info] 
+=== Hosting Setup
+[info] 
+[info] 
+=== App Hosting Setup
+[debug] [2026-06-07T09:19:18.587Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:18.587Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:18.587Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/ainak-51ef5/billingInfo [none]
+[debug] [2026-06-07T09:19:19.437Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/ainak-51ef5/billingInfo 200
+[debug] [2026-06-07T09:19:19.437Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/ainak-51ef5/billingInfo {"name":"projects/ainak-51ef5/billingInfo","projectId":"ainak-51ef5","billingAccountName":"billingAccounts/01ED53-608D2D-ED455E","billingEnabled":true}
+[debug] [2026-06-07T09:19:19.438Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:19.439Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:19.439Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-06-07T09:19:19.439Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:21.208Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-06-07T09:19:21.208Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:21.209Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:21.209Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:21.209Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com:enable [none]
+[debug] [2026-06-07T09:19:21.209Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com:enable  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:22.123Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com:enable 200
+[debug] [2026-06-07T09:19:22.123Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/firebaseapphosting.googleapis.com:enable [omitted]
+[debug] [2026-06-07T09:19:32.131Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.131Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.132Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.132Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.132Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.132Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.132Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.132Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.133Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.133Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.133Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.133Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:32.133Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com [none]
+[debug] [2026-06-07T09:19:32.133Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:32.135Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/cloudbuild.googleapis.com [none]
+[debug] [2026-06-07T09:19:32.136Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/cloudbuild.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:32.139Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/secretmanager.googleapis.com [none]
+[debug] [2026-06-07T09:19:32.139Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/secretmanager.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:32.141Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/run.googleapis.com [none]
+[debug] [2026-06-07T09:19:32.141Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/run.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:32.145Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/artifactregistry.googleapis.com [none]
+[debug] [2026-06-07T09:19:32.145Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/artifactregistry.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:32.148Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/iam.googleapis.com [none]
+[debug] [2026-06-07T09:19:32.148Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/iam.googleapis.com  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:33.714Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/secretmanager.googleapis.com 200
+[debug] [2026-06-07T09:19:33.714Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/secretmanager.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:33.754Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com 200
+[debug] [2026-06-07T09:19:33.754Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:33.755Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:33.755Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:33.755Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com:enable [none]
+[debug] [2026-06-07T09:19:33.755Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com:enable  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:33.804Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/iam.googleapis.com 200
+[debug] [2026-06-07T09:19:33.805Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/iam.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:33.812Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/cloudbuild.googleapis.com 200
+[debug] [2026-06-07T09:19:33.812Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/cloudbuild.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:33.818Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/artifactregistry.googleapis.com 200
+[debug] [2026-06-07T09:19:33.818Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/artifactregistry.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:33.868Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/run.googleapis.com 200
+[debug] [2026-06-07T09:19:33.868Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/run.googleapis.com [omitted]
+[debug] [2026-06-07T09:19:35.689Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com:enable 200
+[debug] [2026-06-07T09:19:35.689Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/ainak-51ef5/services/developerconnect.googleapis.com:enable [omitted]
+[debug] [2026-06-07T09:19:45.701Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:45.701Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:45.701Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts/firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-06-07T09:19:45.701Z] >>> [apiv2][(partial)header] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts/firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com:testIamPermissions  x-goog-user-project=ainak-51ef5
+[debug] [2026-06-07T09:19:45.701Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts/firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-06-07T09:19:47.272Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts/firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com:testIamPermissions 404
+[debug] [2026-06-07T09:19:47.273Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts/firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2026-06-07T09:19:47.273Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:47.274Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:47.274Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts [none]
+[debug] [2026-06-07T09:19:47.274Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts {"accountId":"firebase-app-hosting-compute","serviceAccount":{"displayName":"Firebase App Hosting compute service account","description":"Default service account used to run builds and deploys for Firebase App Hosting"}}
+[debug] [2026-06-07T09:19:49.194Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts 200
+[debug] [2026-06-07T09:19:49.194Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/ainak-51ef5/serviceAccounts [omitted]
+[debug] [2026-06-07T09:19:49.194Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:49.194Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:49.194Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:getIamPolicy [none]
+[debug] [2026-06-07T09:19:50.819Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:getIamPolicy 200
+[debug] [2026-06-07T09:19:50.819Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:getIamPolicy {"version":1,"etag":"BwZTpmP9bcw=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:933805831721@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-933805831721@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:933805831721-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-933805831721@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:salmanirfan674@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-933805831721@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]}]}
+[debug] [2026-06-07T09:19:50.820Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:50.820Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:19:50.820Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:setIamPolicy [none]
+[debug] [2026-06-07T09:19:50.820Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:setIamPolicy {"policy":{"version":1,"etag":"BwZTpmP9bcw=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:933805831721@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-933805831721@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:933805831721-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com","serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-933805831721@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:salmanirfan674@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-933805831721@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaseapphosting.computeRunner","members":["serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/developerconnect.readTokenAccessor","members":["serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/storage.objectViewer","members":["serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]}]},"updateMask":"bindings"}
+[debug] [2026-06-07T09:19:51.801Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:setIamPolicy 200
+[debug] [2026-06-07T09:19:51.801Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ainak-51ef5:setIamPolicy {"version":1,"etag":"BwZTpmVnffQ=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:933805831721@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-933805831721@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/developerconnect.readTokenAccessor","members":["serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:933805831721-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com","serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaseapphosting.computeRunner","members":["serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-933805831721@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-933805831721@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:salmanirfan674@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-933805831721@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@ainak-51ef5.iam.gserviceaccount.com"]},{"role":"roles/storage.objectViewer","members":["serviceAccount:firebase-app-hosting-compute@ainak-51ef5.iam.gserviceaccount.com"]}]}
+[info] i  This command links your local project to Firebase App Hosting. You will be able to deploy your web app with `firebase deploy` after setup. 
+[debug] [2026-06-07T09:20:17.509Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:20:17.509Z] Checked if tokens are valid: true, expires at: 1780827239057
+[debug] [2026-06-07T09:20:17.510Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/ainak-51ef5/locations/-/backends 
+[debug] [2026-06-07T09:20:18.976Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/ainak-51ef5/locations/-/backends 200
+[debug] [2026-06-07T09:20:18.976Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/ainak-51ef5/locations/-/backends {}
+[debug] [2026-06-07T09:22:18.761Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\MGS Computer\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:518:28)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1124:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:263:20)
+    at ReadStream.emit (node:events:530:35)
+    at emitKeys (node:internal/readline/utils:370:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at ReadStream.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+[error] 
+[error] Error: An unexpected error has occurred.

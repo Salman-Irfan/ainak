@@ -8,7 +8,7 @@ import { ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
 const SLIDES = [
 	{
 		id: 0,
-		image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1800&q=85",
+		image: "/assets/images/hero1.jpeg",
 		label: "New Collection 2025",
 		title: ["Vision", "Redefined"],
 		titleItalic: "Beautifully",
@@ -18,7 +18,7 @@ const SLIDES = [
 	},
 	{
 		id: 1,
-		image: "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=1800&q=85",
+		image: "/assets/images/hero2.jpeg",
 		label: "Signature Sunwear",
 		title: ["Shade The", "World In"],
 		titleItalic: "Style",
@@ -27,7 +27,7 @@ const SLIDES = [
 	},
 	{
 		id: 2,
-		image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1800&q=85",
+		image: "/assets/images/hero3.jpeg",
 		label: "Contact Lenses",
 		title: ["See The", "World"],
 		titleItalic: "Clearly",

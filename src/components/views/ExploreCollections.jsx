@@ -12,7 +12,7 @@ const COLLECTIONS = [
     href: '/eye-glasses',
     description:
       'From minimalist titanium frames to bold acetate silhouettes — crafted for precision vision and daily elegance.',
-    image: 'https://images.unsplash.com/photo-1588118453413-a5e793e61aa5?w=900&q=80',
+    image: '/assets/images/eyeGlasses.jpg',
   },
   {
     tag: 'Lifestyle',
@@ -20,7 +20,7 @@ const COLLECTIONS = [
     href: '/sun-glasses',
     description:
       'Premium polarised and UV-400 sun glasses. From beachside escapes to urban streets — style that moves with you.',
-    image: 'https://images.unsplash.com/photo-1473496169904-658ba7574b0d?w=900&q=80',
+    image: '/assets/images/sunGlasses.jpg',
   },
   {
     tag: 'Contact Wear',
@@ -28,7 +28,7 @@ const COLLECTIONS = [
     href: '/contact-lenses',
     description:
       'Breathable, colour-enhancing and vision-correcting lenses. For those who want clarity without the frame.',
-    image: 'https://images.unsplash.com/photo-1577401239170-897942555fb3?w=900&q=80',
+    image: '/assets/images/contactLenses.jpg',
   },
   {
     tag: 'Prescription',
@@ -36,7 +36,7 @@ const COLLECTIONS = [
     href: '/lenses',
     description:
       'High-index, anti-glare, blue light filtering and photochromic lens options — tailored to your prescription.',
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80',
+    image: '/assets/images/lenses.jpg',
   },
 ];
 
