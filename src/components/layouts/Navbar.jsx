@@ -39,9 +39,9 @@ const Navbar = ({ categories = [] }) => {
 							Search
 						</button>
 
-						<button className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
+						<Link href="/cart" className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
 							Cart
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>
