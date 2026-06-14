@@ -1,7 +1,5 @@
 // /src/app/(website)/layout.jsx
 
-import Navbar from "@/components/layouts/Navbar";
-import Footer from "@/components/layouts/Footer";
 import { getCategories } from "@/services/categories/getCategories";
 
 export default async function WebsiteLayout({ children }) {
@@ -10,9 +8,9 @@ export default async function WebsiteLayout({ children }) {
 
 	return (
 		<>
-			<Navbar categories={categories} />
+			
 			{children}
-			<Footer />
+			
 		</>
 	);
 }

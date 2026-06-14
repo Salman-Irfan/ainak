@@ -25,15 +25,7 @@ const SLIDES = [
 		sub: "Iconic silhouettes. UV-400 protection. Sun glasses that define your persona.",
 		cta: { label: "Shop Sunglasses", href: "/sun-glasses" },
 	},
-	{
-		id: 2,
-		image: "/assets/images/hero3.jpeg",
-		label: "Contact Lenses",
-		title: ["See The", "World"],
-		titleItalic: "Clearly",
-		sub: "Daily, monthly & coloured contact lenses. Delivered to your door across Pakistan.",
-		cta: { label: "Explore Lenses", href: "/contact-lenses" },
-	},
+	
 ];
 
 export default function HeroCarousel() {

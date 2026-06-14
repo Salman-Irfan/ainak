@@ -1,52 +1,71 @@
-// src/components/layouts/Navbar.jsx
 "use client";
+import { useState, useEffect } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import Container from "../shared/Container";
 
-import Link from "next/link";
+const links = [
+	{ name: "Collections", href: "#collections" },
+	{ name: "Why ELYZ", href: "#why-elyz" },
+	{ name: "Try On", href: "#try-on" },
+	{ name: "Best Sellers", href: "#best-sellers" },
+	{ name: "Process", href: "#process" },
+	{ name: "FAQ", href: "#faq" },
+];
 
-const Navbar = ({ categories = [] }) => {
+export default function Navbar() {
+	const { scrollY } = useScroll();
+	const [hidden, setHidden] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+
+	useMotionValueEvent(scrollY, "change", (latest) => {
+		const previous = scrollY.getPrevious();
+		if (latest > previous && latest > 150) setHidden(true);
+		else setHidden(false);
+		setScrolled(latest > 50);
+	});
+
 	return (
-		<header className="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-700">
-			<div className="max-w-7xl mx-auto px-6">
-				<div className="h-18 flex items-center justify-between px-4">
-					{/* Logo */}
-					<Link
-						href="/"
-						className="text-2xl font-bold tracking-wide text-white hover:text-slate-300 transition">
-						AINAK
-					</Link>
-
-					{/* Navigation */}
-					<nav className="hidden lg:flex items-center gap-10">
-						<Link
-							href="/"
-							className="text-white font-medium hover:text-slate-300 transition">
-							Home
-						</Link>
-
-						{categories.map((category) => (
-							<Link
-								key={category.id}
-								href={`/category/${category.slug}`}
-								className="text-white font-medium hover:text-slate-300 transition px-3">
-								{category.name}
-							</Link>
+		<motion.nav
+			variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
+			animate={hidden ? "hidden" : "visible"}
+			transition={{ duration: 0.35, ease: "easeInOut" }}
+			className={`fixed top-0 inset-x-0 w-full z-50 transition-colors duration-300 ${
+				scrolled
+					? "bg-white/80 backdrop-blur-md border-b border-gray-200"
+					: "bg-transparent"
+			}`}>
+			<Container>
+				<div className="flex items-center justify-between h-20">
+					<a
+						href="#"
+						className={`text-2xl font-serif tracking-widest ${scrolled ? "text-[#0F172A]" : "text-[#FAFAFA]"}`}>
+						ELYZ
+					</a>
+					<div className="hidden md:flex items-center space-x-8">
+						{links.map((link) => (
+							<a
+								key={link.name}
+								href={link.href}
+								className={`text-sm tracking-widest uppercase hover:text-[#D4AF37] transition-colors ${
+									scrolled
+										? "text-[#1E293B]"
+										: "text-gray-200"
+								}`}>
+								{link.name}
+							</a>
 						))}
-					</nav>
-
-					{/* Actions */}
-					<div className="flex items-center gap-4">
-						<button className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
-							Search
-						</button>
-
-						<Link href="/cart" className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition">
-							Cart
-						</Link>
+						<a
+							href="#order"
+							className={`px-5 py-2 text-sm tracking-widest uppercase border transition-colors ${
+								scrolled
+									? "border-[#0F172A] text-[#0F172A] hover:bg-[#0F172A] hover:text-white"
+									: "border-white text-white hover:bg-white hover:text-[#0F172A]"
+							}`}>
+							Order
+						</a>
 					</div>
 				</div>
-			</div>
-		</header>
+			</Container>
+		</motion.nav>
 	);
-};
-
-export default Navbar;
+}
