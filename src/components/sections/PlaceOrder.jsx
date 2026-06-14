@@ -11,6 +11,14 @@ export default function PlaceOrder() {
 	const [silhouette, setSilhouette] = useState("");
 	const [palette, setPalette] = useState("");
 	const [charms, setCharms] = useState([]);
+	// Add these to your existing state declarations
+	const [deliveryDetails, setDeliveryDetails] = useState({
+		fullName: "",
+		phone: "",
+		city: "",
+		address: "",
+		notes: "",
+	});
 
 	// Options data
 	const materials = ["Premium TR-90", "Artisanal Metal"];
@@ -41,6 +49,19 @@ export default function PlaceOrder() {
 			setCharms([...charms, charm]);
 		}
 	};
+	// Form submission handler
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const orderData = {
+			material,
+			silhouette,
+			palette,
+			charms,
+			...deliveryDetails,
+		};
+		console.log("Order Submitted:", orderData);
+		// You can now proceed to send orderData to your API
+	};
 
 	return (
 		<section
@@ -53,15 +74,17 @@ export default function PlaceOrder() {
 			<Container className="relative z-10">
 				<div className="bg-[#0F172A]/80 backdrop-blur-xl border border-gray-800 shadow-2xl p-8 md:p-16 rounded-2xl max-w-4xl mx-auto">
 					{/* make this div in center of the container */}
-                    <div className="text-white text-center mb-12">
-                        {/* choose some bold, enlarge and italic typography */}
-                        <h2 className="text-4xl font-bold italic text-yellow-300 animate-pulse">Acquire Yours</h2> 
-                        <p className="text-lg text-gray-300">Secure Your ELYZ Frame</p>
+					<div className="text-white text-center mb-12">
+						{/* choose some bold, enlarge and italic typography */}
+						<h2 className="text-4xl font-bold italic text-yellow-300 animate-pulse">
+							Acquire Yours
+						</h2>
+						<p className="text-lg text-gray-300">
+							Secure Your ELYZ Frame
+						</p>
 					</div>
-
-					<form
-						className="space-y-12"
-						onSubmit={(e) => e.preventDefault()}>
+					{/* now on form submit, console log the form values in a handle submit callback function */}
+					<form className="space-y-12" onSubmit={handleSubmit}>
 						{/* 1. Material Selection */}
 						<div className="space-y-4">
 							<h3 className="text-lg font-medium text-gray-100 border-b border-gray-800 pb-2">
@@ -200,6 +223,13 @@ export default function PlaceOrder() {
 										type="text"
 										className="w-full border-b border-gray-700 py-3 bg-transparent text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
 										placeholder="e.g. Ali Khan"
+										value={deliveryDetails.fullName}
+										onChange={(e) =>
+											setDeliveryDetails({
+												...deliveryDetails,
+												fullName: e.target.value,
+											})
+										}
 									/>
 								</div>
 								<div>
@@ -211,6 +241,13 @@ export default function PlaceOrder() {
 										required
 										className="w-full border-b border-gray-700 py-3 bg-transparent text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
 										placeholder="+92 300 0000000"
+										value={deliveryDetails.phone}
+										onChange={(e) =>
+											setDeliveryDetails({
+												...deliveryDetails,
+												phone: e.target.value,
+											})
+										}
 									/>
 								</div>
 							</div>
@@ -224,6 +261,13 @@ export default function PlaceOrder() {
 										type="text"
 										className="w-full border-b border-gray-700 py-3 bg-transparent text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
 										placeholder="Lahore"
+										value={deliveryDetails.city}
+										onChange={(e) =>
+											setDeliveryDetails({
+												...deliveryDetails,
+												city: e.target.value,
+											})
+										}
 									/>
 								</div>
 								<div>
@@ -234,6 +278,13 @@ export default function PlaceOrder() {
 										type="text"
 										className="w-full border-b border-gray-700 py-3 bg-transparent text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
 										placeholder="Street, Phase, Area"
+										value={deliveryDetails.address}
+										onChange={(e) =>
+											setDeliveryDetails({
+												...deliveryDetails,
+												address: e.target.value,
+											})
+										}
 									/>
 								</div>
 							</div>
@@ -245,7 +296,15 @@ export default function PlaceOrder() {
 								<textarea
 									rows="3"
 									className="w-full border-b border-gray-700 py-3 bg-transparent text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
-									placeholder="Any specific lens requirements or preferences..."></textarea>
+									placeholder="Any specific lens requirements or preferences..."
+									value={deliveryDetails.notes}
+									onChange={(e) =>
+										setDeliveryDetails({
+											...deliveryDetails,
+											notes: e.target.value,
+										})
+									}
+								></textarea>
 							</div>
 						</div>
 
