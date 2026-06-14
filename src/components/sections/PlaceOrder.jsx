@@ -4,10 +4,14 @@ import { motion } from "framer-motion";
 import Container from "../shared/Container";
 import SectionHeading from "../shared/SectionHeading";
 import Button from "../shared/Button";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function PlaceOrder() {
+	// 1. Add loading state
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	// State management for user selections
 	const [material, setMaterial] = useState("");
 	const [silhouette, setSilhouette] = useState("");
@@ -51,11 +55,27 @@ export default function PlaceOrder() {
 			setCharms([...charms, charm]);
 		}
 	};
+	// 2. Helper function to reset form
+	const resetForm = () => {
+		setMaterial("");
+		setSilhouette("");
+		setPalette("");
+		setCharms([]);
+		setDeliveryDetails({
+			fullName: "",
+			phone: "",
+			city: "",
+			address: "",
+			notes: "",
+		});
+	};
 	// Form submission handler
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Optional: Add a loading state to your button
-		// setIsLoading(true);
+		setIsSubmitting(true);
+		// Define a loading toast
+		const loadingToast = toast.loading("Processing your order...");
 		try {
 			const orderData = {
 				material,
@@ -67,19 +87,47 @@ export default function PlaceOrder() {
 			console.log("Order Submitted:", orderData);
 			// firebase firestore
 			// Adding document to the 'orders' collection
-			const docRef = await addDoc(collection(db, "orders"), orderData);
+			// 1. Send to Firebase
+			const docRef = await addDoc(collection(db, "orders"), {
+				...orderData,
+				timestamp: serverTimestamp(),
+			});
 
 			console.log("Order stored with ID: ", docRef.id);
-			alert("Order placed successfully!");
+			// 2. Send to Formspree via Axios
+			await axios.post(process.env.NEXT_PUBLIC_FORMSPREE_API, orderData, {
+				headers: {
+					Accept: "application/json",
+				},
+			});
+			// Success Feedback
+			toast.dismiss(loadingToast);
+			toast.success("Order placed successfully! Redirecting to WhatsApp...");
+			// 3. Construct WhatsApp Message
+			const message =
+				`*New ELYZ Order*\n\n` +
+				`*Customer:* ${deliveryDetails.fullName}\n` +
+				`*Phone:* ${deliveryDetails.phone}\n` +
+				`*Material:* ${material}\n` +
+				`*Silhouette:* ${silhouette}\n` +
+				`*Palette:* ${palette}\n` +
+				`*Charms:* ${charms.join(", ")}\n` +
+				`*City:* ${deliveryDetails.city}\n` +
+				`*Address:* ${deliveryDetails.address}\n` +
+				`*Notes:* ${deliveryDetails.notes}`;
 
-			// Optional: Reset form here
-			// setMaterial("");
-			// setDeliveryDetails({ ... });
+			const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUM; // No '+' sign here
+			const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+			// Open WhatsApp in a new tab
+			window.open(whatsappUrl, "_blank");
+			resetForm(); // Clear form on success
 		} catch (error) {
 			console.error("Error submitting order:", error);
-			alert("Failed to place order. Please try again.");
+			toast.dismiss(loadingToast);
+			toast.error("Failed to place order. Please try again.");
 		} finally {
-			// setIsLoading(false);
+			setIsSubmitting(false);
 		}
 	};
 
@@ -330,8 +378,11 @@ export default function PlaceOrder() {
 						<div className="text-center pt-6">
 							<Button
 								type="submit"
-								className="w-full md:w-auto px-16">
-								Place My Order
+								className="w-full md:w-auto px-16 hover:scale-105 hover:cursor-pointer transition-transform"
+								disabled={isSubmitting}>
+								{isSubmitting
+									? "Processing..."
+									: "Place My Order"}
 							</Button>
 						</div>
 					</form>

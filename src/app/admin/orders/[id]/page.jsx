@@ -1,27 +1,25 @@
-// /src/app/admin/orders/[id]/page.jsx
-
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-
+import { useParams, useRouter } from "next/navigation";
 import { getOrderById } from "@/services/orders/getOrderById";
 import { updateOrderStatus } from "@/services/orders/updateOrderStatus";
-
-const statusOptions = [
-	"pending",
-	"confirmed",
-	"processing",
-	"shipped",
-	"delivered",
-	"cancelled",
-];
+import {
+	ArrowLeft,
+	User,
+	MapPin,
+	Package,
+	Calendar,
+	RefreshCw,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function OrderDetailsPage() {
 	const { id } = useParams();
-
+	const router = useRouter();
 	const [order, setOrder] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [updating, setUpdating] = useState(false);
 
 	const fetchOrder = async () => {
 		setLoading(true);
@@ -34,113 +32,136 @@ export default function OrderDetailsPage() {
 		if (id) fetchOrder();
 	}, [id]);
 
-	const handleStatusChange = async (status) => {
-		await updateOrderStatus(id, status);
-		fetchOrder();
+	// Robust Date Formatter to prevent .toDate() crashes
+	const formatDate = (ts) => {
+		if (!ts) return "N/A";
+		// If it's a Firestore Timestamp object with .toDate()
+		if (typeof ts.toDate === "function")
+			return ts.toDate().toLocaleString();
+		// If it's already a Date object
+		if (ts instanceof Date) return ts.toLocaleString();
+		// If it's a serialized object with seconds
+		if (ts.seconds) return new Date(ts.seconds * 1000).toLocaleString();
+		return "Invalid Date";
 	};
 
-	if (loading) {
-		return <div className="p-6">Loading...</div>;
-	}
+	const handleStatusChange = async (newStatus) => {
+		setUpdating(true);
+		await updateOrderStatus(id, newStatus);
+		await fetchOrder();
+		setUpdating(false);
+	};
 
-	if (!order) {
-		return <div className="p-6">Order not found</div>;
-	}
+	if (loading)
+		return <div className="p-8 text-white">Loading order data...</div>;
+	if (!order) return <div className="p-8 text-white">Order not found.</div>;
 
 	return (
-		<div className="max-w-5xl mx-auto p-6 space-y-6">
+		<div className="p-8 bg-[#050A16] min-h-screen text-white">
+			<Link
+				href="/admin/dashboard"
+				className="flex items-center text-gray-400 hover:text-[#D4AF37] mb-6 transition">
+				<ArrowLeft className="mr-2" size={20} /> Back to Dashboard
+			</Link>
 
-			<h1 className="text-3xl font-bold">
-				Order Details
-			</h1>
-
-			{/* CUSTOMER INFO */}
-			<div className="border rounded-xl p-4">
-				<h2 className="font-bold text-lg mb-2">
-					Customer Info
-				</h2>
-
-				<p><b>Name:</b> {order.customerName}</p>
-				<p><b>Phone:</b> {order.phone}</p>
-				<p><b>Email:</b> {order.email || "N/A"}</p>
-			</div>
-
-			{/* SHIPPING */}
-			<div className="border rounded-xl p-4">
-				<h2 className="font-bold text-lg mb-2">
-					Shipping Address
-				</h2>
-
-				<p>{order.address}</p>
-				<p>{order.city}</p>
-				<p>{order.notes}</p>
-			</div>
-
-			{/* STATUS */}
-			<div className="border rounded-xl p-4">
-				<h2 className="font-bold text-lg mb-2">
-					Order Status
-				</h2>
-
-				<select
-					value={order.status}
-					onChange={(e) =>
-						handleStatusChange(e.target.value)
-					}
-					className="border p-2 rounded"
-				>
-					{statusOptions.map((s) => (
-						<option key={s} value={s}>
-							{s}
-						</option>
-					))}
-				</select>
-			</div>
-
-			{/* PRODUCTS */}
-			<div className="border rounded-xl p-4">
-				<h2 className="font-bold text-lg mb-4">
-					Products Ordered
-				</h2>
-
-				<div className="space-y-4">
-					{order.items?.map((item) => (
-						<div
-							key={item.productId}
-							className="flex items-center gap-4 border p-3 rounded"
-						>
-							<img
-								src={item.image}
-								className="w-16 h-16 object-cover rounded"
-							/>
-
-							<div className="flex-1">
-								<p className="font-semibold">
-									{item.name}
-								</p>
-
-								<p className="text-sm text-gray-600">
-									Rs {item.price} × {item.quantity}
-								</p>
-							</div>
-
-							<p className="font-bold">
-								Rs {item.price * item.quantity}
-							</p>
+			<div className="max-w-4xl mx-auto bg-[#0B1120] border border-gray-800 rounded-3xl p-8 shadow-2xl">
+				<div className="flex justify-between items-start border-b border-gray-800 pb-6 mb-6">
+					<div>
+						<h1 className="text-3xl font-bold">Order #{id}</h1>
+						<div className="flex items-center text-gray-400 mt-2">
+							<Calendar size={16} className="mr-2" />
+							{formatDate(order.timestamp)}
 						</div>
-					))}
+					</div>
+					{/* use optimistic when updating the status for better user experience */}
+					<select
+						className="bg-gray-900 border border-gray-700 px-4 py-2 rounded-full capitalize font-medium cursor-pointer"
+						value={order.status}
+						onChange={(e) => handleStatusChange(e.target.value)}
+						disabled={updating}>
+						{[
+							"pending",
+							"confirmed",
+							"processing",
+							"shipped",
+							"delivered",
+							"cancelled",
+						].map((s) => (
+							<option key={s} value={s}>
+								{s}
+							</option>
+						))}
+					</select>
 				</div>
-			</div>
 
-			{/* TOTAL */}
-			<div className="border rounded-xl p-4 flex justify-between">
-				<h2 className="text-xl font-bold">
-					Total
-				</h2>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div className="space-y-4">
+						<h3 className="flex items-center font-semibold text-[#D4AF37] mb-4">
+							<User className="mr-2" size={18} /> Customer Details
+						</h3>
+						<p>
+							<span className="text-gray-400">Name:</span>{" "}
+							{order.fullName}
+						</p>
+						<p>
+							<span className="text-gray-400">Email:</span>{" "}
+							{order.email}
+						</p>
+						<p>
+							<span className="text-gray-400">Phone:</span>{" "}
+							{order.phone}
+						</p>
+					</div>
 
-				<h2 className="text-xl font-bold">
-					Rs {order.totalAmount}
-				</h2>
+					<div className="space-y-4">
+						<h3 className="flex items-center font-semibold text-[#D4AF37] mb-4">
+							<MapPin className="mr-2" size={18} /> Shipping
+							Address
+						</h3>
+						<p className="text-gray-300 leading-relaxed">
+							{order.address}
+						</p>
+					</div>
+
+					<div className="md:col-span-2 bg-gray-900/50 p-6 rounded-xl border border-gray-800">
+						<h3 className="flex items-center font-semibold text-[#D4AF37] mb-4">
+							<Package className="mr-2" size={18} />
+							Order Specifications
+						</h3>
+						<div className="grid grid-cols-2 gap-4">
+							{Object.entries(order).map(([key, value]) => {
+								// Skip fields we handle manually or don't want to show
+								if (
+									[
+										"fullName",
+										"email",
+										"phone",
+										"address",
+										"status",
+										"timestamp",
+										"id",
+									].includes(key)
+								)
+									return null;
+
+								return (
+									<div key={key}>
+										<p className="text-gray-400 text-sm capitalize">
+											{key.replace(/([A-Z])/g, " $1")}
+										</p>
+										<p className="font-medium">
+											{/* Check if the value is a date-like object/timestamp */}
+											{value?.seconds ||
+											typeof value?.toDate === "function"
+												? formatDate(value)
+												: String(value)}
+										</p>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
