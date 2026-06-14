@@ -34,7 +34,7 @@ export default function FeaturedCollections() {
 					viewport={{ once: true }}
 					className="mb-16 rounded-xl overflow-hidden shadow-2xl relative">
 					<img
-						src="products.jpeg"
+						src="assets/images/products.jpeg"
 						alt="ELYZ Custom Vision Studio - Design Your Own"
 						className="w-full object-cover"
 					/>
