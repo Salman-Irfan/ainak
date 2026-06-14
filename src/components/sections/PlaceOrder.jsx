@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Container from "../shared/Container";
 import SectionHeading from "../shared/SectionHeading";
 import Button from "../shared/Button";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/config/firebase";
 
 export default function PlaceOrder() {
 	// State management for user selections
@@ -50,17 +52,35 @@ export default function PlaceOrder() {
 		}
 	};
 	// Form submission handler
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const orderData = {
-			material,
-			silhouette,
-			palette,
-			charms,
-			...deliveryDetails,
-		};
-		console.log("Order Submitted:", orderData);
-		// You can now proceed to send orderData to your API
+		// Optional: Add a loading state to your button
+		// setIsLoading(true);
+		try {
+			const orderData = {
+				material,
+				silhouette,
+				palette,
+				charms,
+				...deliveryDetails,
+			};
+			console.log("Order Submitted:", orderData);
+			// firebase firestore
+			// Adding document to the 'orders' collection
+			const docRef = await addDoc(collection(db, "orders"), orderData);
+
+			console.log("Order stored with ID: ", docRef.id);
+			alert("Order placed successfully!");
+
+			// Optional: Reset form here
+			// setMaterial("");
+			// setDeliveryDetails({ ... });
+		} catch (error) {
+			console.error("Error submitting order:", error);
+			alert("Failed to place order. Please try again.");
+		} finally {
+			// setIsLoading(false);
+		}
 	};
 
 	return (
@@ -72,7 +92,7 @@ export default function PlaceOrder() {
 			{/* Ambient premium gold glow behind the container */}
 			<div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#D4AF37] opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
 			<Container className="relative z-10">
-				<div className="bg-[#0F172A]/80 backdrop-blur-xl border border-gray-800 shadow-2xl p-8 md:p-16 rounded-2xl max-w-4xl mx-auto">
+				<div className="bg-[#000]/80 backdrop-blur-xl border border-gray-800 shadow-2xl p-8 md:p-16 rounded-2xl max-w-4xl mx-auto">
 					{/* make this div in center of the container */}
 					<div className="text-white text-center mb-12">
 						{/* choose some bold, enlarge and italic typography */}
@@ -303,8 +323,7 @@ export default function PlaceOrder() {
 											...deliveryDetails,
 											notes: e.target.value,
 										})
-									}
-								></textarea>
+									}></textarea>
 							</div>
 						</div>
 
