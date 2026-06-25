@@ -26,7 +26,7 @@ export default function Home() {
 			<About/>
 			<FeaturedCollections />
 			<WhyChooseElyz />
-			<VirtualTryOn />
+			{/* <VirtualTryOn /> */}
 			<BestSellers />
 			<OurProcess />
 			<FAQ />
